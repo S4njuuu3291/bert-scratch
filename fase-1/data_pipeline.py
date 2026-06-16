@@ -70,24 +70,25 @@ dummy_vocab = {
     "budi": 5, "makan": 6, "nasi": 7, "saya": 8, "ayam": 9, "##kan": 10
 }
 
-from tokenizer import IndoWordPieceTokenizer
+if __name__ == "__main__":
+    from tokenizer import IndoWordPieceTokenizer
 
-tokenizer = IndoWordPieceTokenizer(dummy_vocab)
+    tokenizer = IndoWordPieceTokenizer(dummy_vocab)
 
-# Inisialisasi Pipeline Data dengan Max Length (N) = 8
-pipeline = IndoBERTDataPipeline(tokenizer, dummy_vocab, max_length=8)
+    # Inisialisasi Pipeline Data dengan Max Length (N) = 8
+    pipeline = IndoBERTDataPipeline(tokenizer, dummy_vocab, max_length=8)
 
-# Input data tiruan berupa batch berisi 2 kalimat (B = 2)
-indonesian_sentences = [
-    "budi makankan nasi",  # Panjang token asli setelah dipecah + CLS/SEP = 5. Sisa 3 slot PAD.
-    "saya makan ayam"      # Panjang token asli setelah dipecah + CLS/SEP = 5. Sisa 3 slot PAD.
-]
+    # Input data tiruan berupa batch berisi 2 kalimat (B = 2)
+    indonesian_sentences = [
+        "budi makankan nasi",  # Panjang token asli setelah dipecah + CLS/SEP = 5. Sisa 3 slot PAD.
+        "saya makan ayam"      # Panjang token asli setelah dipecah + CLS/SEP = 5. Sisa 3 slot PAD.
+    ]
 
-# Jalankan Pipeline
-t_input_ids, t_attention_mask, t_token_type_ids = pipeline.create_batch(indonesian_sentences)
+    # Jalankan Pipeline
+    t_input_ids, t_attention_mask, t_token_type_ids = pipeline.create_batch(indonesian_sentences)
 
-# Cetak hasil Tensor mentah
-print("=== OUTPUT PIPELINE DATA INDOBERT ===")
-print("Input IDs Tensor:\n", t_input_ids)
-print("Attention Mask Tensor:\n", t_attention_mask)
-print("Token Type IDs Tensor:\n", t_token_type_ids)
+    # Cetak hasil Tensor mentah
+    print("=== OUTPUT PIPELINE DATA INDOBERT ===")
+    print("Input IDs Tensor:\n", t_input_ids)
+    print("Attention Mask Tensor:\n", t_attention_mask)
+    print("Token Type IDs Tensor:\n", t_token_type_ids)

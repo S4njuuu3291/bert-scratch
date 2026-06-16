@@ -41,9 +41,7 @@ Setelah semua kata di dalam korpus diubah menjadi potongan karakter seperti di a
 
 * **Iterasi 1:** Algoritma memeriksa semua pasangan. Ternyata, pasangan token `##k` dan `##a` sangat sering muncul bersamaan di dalam kata-kata bahasa Indonesia (seperti di kata *makan*, *bakar*, *pakaian*). Setelah dihitung dengan rumus:
 
-$$\text{Score}_{(\text{##k}, \text{##a})} = \frac{\text{count}(\text{##ka})}{\text{count}(\text{##k}) \times \text{count}(\text{##a})}$$
-
-
+$$\text{Score}_{(\text{\#k}, \text{\#\#a})} = \frac{\text{count}(\text{\#\#ka})}{\text{count}(\text{\#\#k}) \times \text{count}(\text{\#\#a})}$$
 
 Ternyata skor pasangan ini adalah yang tertinggi di antara semua pasangan lain di korpus.
 * **Aksi Algoritma:** Token baru `##ka` resmi dibuat dan dimasukkan ke dalam Kosakata (*Vocabulary*). Di dalam korpus, semua runtutan `##k` dan `##a` otomatis bergabung menjadi `##ka`. Kata `makan` sekarang berubah representasinya menjadi: `['m', '##a', '##ka', '##n']`.
